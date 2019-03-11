@@ -5,7 +5,7 @@
 library(jpeg)
 library(grid)
 library(ggplot2)
-setwd("~/Desktop/Stat\ 133/workout01/code")
+setwd("~/Desktop/hw-stat133/workout01/code")
 court_file <- "../images/court_f.jpeg"
 court_image <- rasterGrob(readJPEG(court_file), width = unit(1, "npc"), 
                            height = unit(1, "npc"))

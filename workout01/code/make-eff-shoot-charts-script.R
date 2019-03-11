@@ -3,7 +3,7 @@
 
 #Imports shots data, only reads columns "shot_type", "shot_made_flag"
 # and "name"
-setwd("~/Desktop/Stat\ 133/workout01/data")
+setwd("~/Desktop/hw-stat133/workout01/data")
 library("dplyr")
 dat <- read.csv("./shots-data.csv", header=T,
                 col.names = c("NULL", "NULL", "NULL", "NULL",
@@ -50,12 +50,10 @@ eff_shoot_combined %>% arrange(desc(perc_made)) %>%
   theme(axis.text.x = element_text(face = "bold", size = 10))
 dev.off()
 
-geom_point(points_earned, aes(x = name, y = total))
-
-##Outputs png file of barplot of points earned arranged by player 
+##Outputs png file of earned points barplot arranged by player 
 ##using data from points_earned table
 png("../images/points-earned.png", units = "in", res = 300, width = 8, height = 7)
-points_earned %>% ggplot(aes(x = name)) + 
+points_earned %>% ggplot(aes(x = name)) %>%
   geom_bar(aes(y = points_earned), stat = "identity", color = "black", 
            fill = c("#652e05", "#b1511d", "#dc9051", "#efcf82", "#1e5213")) + 
   geom_point(aes(y = total), stat = "identity", shape = 23, fill = "#FC0FC0", size = 5) +

@@ -6,7 +6,7 @@
 
 
 ##Reads in downloaded csv files containing separate player data
-setwd("~/Desktop/Stat\ 133/workout01/code")
+setwd("~/Desktop/hw-stat133/workout01/code")
 curry <- read.csv("../data/steph.csv", stringsAsFactors = FALSE, header = T,
                   colClasses = c("character", "character", "real", "real", "real", "real",
                                  "character", "character", "factor", "real", "character",
