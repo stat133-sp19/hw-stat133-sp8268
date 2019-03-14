@@ -5,6 +5,7 @@
 # and "name"
 setwd("~/Desktop/hw-stat133/workout01/data")
 library("dplyr")
+library("ggplot2")
 dat <- read.csv("./shots-data.csv", header=T,
                 col.names = c("NULL", "NULL", "NULL", "NULL",
                               "NULL", "NULL", "NULL", "made",
@@ -53,10 +54,10 @@ dev.off()
 ##Outputs png file of earned points barplot arranged by player 
 ##using data from points_earned table
 png("../images/points-earned.png", units = "in", res = 300, width = 8, height = 7)
-points_earned %>% ggplot(aes(x = name)) %>%
+points_earned %>% ggplot(aes(x = name)) +
   geom_bar(aes(y = points_earned), stat = "identity", color = "black", 
            fill = c("#652e05", "#b1511d", "#dc9051", "#efcf82", "#1e5213")) + 
   geom_point(aes(y = total), stat = "identity", shape = 23, fill = "#FC0FC0", size = 5) +
   ylab("Total Points Earned") + xlab(" ") + 
-  theme(axis.text.x = element_text(face = "bold", size = 3))
+  theme(axis.text.x = element_text(face = "bold", size = 10))
 dev.off()
