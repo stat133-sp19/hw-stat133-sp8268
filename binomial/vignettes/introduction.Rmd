@@ -1,0 +1,146 @@
+---
+title: "Getting Started with binomial"
+author: "Sophie Phillips"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{binomial}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, message = F, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", text.align = "center")
+library(binomial)
+```
+
+##Binomial distribution
+
+This package provides methods and summary statistics for the binomial distribution, a discrete probabilty distribution that models the proability of k successes in n Bernouilli trials with probability p of success.
+
+##Binomial probability
+
+The probability density function of the binomial distribution is given by 
+
+<center> $f(x) = P(x = k) = {n \choose k} p^{k}  (1 - p)^{n - k}$ </center> 
+
+where:
+
+* *n* is the number of (fixed) trials $(n \geq 0)$
+* *p* is the probability of success on each trial $(0 \leq p \leq n)$
+* 1 - p is the probability of failure on each trial
+* *k* is a variable that represents the number of successes out of *n* trials $(0 \leq k \leq n)$
+* the first term in parenthesis is NOT a fraction, it is the number of combinations in
+which *k* success can occur in *n* trials
+
+{n \choose k} meaning "n choose k" represents the number of possible combinations of k successes in n trials possible. The function bin_choose(n, k) computes this. 
+For example, there are 
+```{r}
+bin_choose(3, 2)
+```
+ways of getting 2 heads in 5 coin tosses, ie THH, HTH, HHT.
+
+The function bin_probability(success, trials, prob) uses bin_choose to compute the probabilty of *success* successes in *trials* trials with *prob* probability of success. 
+For example, the probability of 3 heads in 4 coin tosses using a fair coin (p = 0.5) is 
+```{r}
+bin_probability(3, 4, 0.5)
+```
+
+Requirements:
+
+* *trials* must be a positive integer
+* *success* must be a positive integer less than or equal to trials
+* *prob* must be a numeric, $0 \leq prob \leq 1$ 
+
+##Binomial Distribution
+
+A distribution is the set of all outcomes with their associated probabilities. To find the distribution of X ~ Bin(trials, prob), use the function bin_distribution(trials, prob).
+For example, all possible number of successes in 10 trials with probabilty 0.4 is 
+```{r}
+bin_distribution(10, 0.4)
+```
+This output is both a dataframe and bindis object.
+Class biindis is plotted as a barplot such as:
+```{r}
+bindis <- bin_distribution(10, 0.4)
+plot(bindis)
+```
+
+Requirements:
+
+* *trials* must be a positive integer
+* *prob* must be a numeric, $0 \leq prob \leq 1$ 
+
+##Bin cumulative
+
+The cumulative density distribution is also available through the function bin_cumulative(trials, prob)
+
+```{r}
+bin_cumulative(10, 0.4)
+```
+This output is both a dataframe and bincum object.
+
+Class bincum is plotted as a line graph such as:
+```{r}
+bincum <- bin_cumulative(10, 0.4)
+plot(bincum)
+```
+
+Requirements:
+
+* *trials* must be a positive integer
+* *prob* must be a numeric, $0 \leq prob \leq 1$ 
+
+##Summary Statistics
+
+The summary statistics of a binomial distribution with *trials* and *prob* can be obtained using the following summary functions, all of the format 
+bin_<summary statistic>(trials, prob)
+
+* Mean
++ The expected value or mean of a binomial distribution
+* Variance
++ Standard deviation squared
+* Mode
++ Most likely number of success in given number of trials
+* Skewness
++ measure of the asymmetry of the probability distribution of a random variable about its mean
+* Kurtosis
++ measure of the “tailedness” of the probability distribution of a random variable.
+
+For example,
+```{r}
+bin_mean(10, 0.5)
+bin_skewness(10, 0.5)
+```
+
+##Class Binvar
+
+A binomial variable object stores the values *trials* and *prob*. A binvar object is constructed using the function bin_variable(trials, prob), which returns a binvar object that is stored as a list with named elements trials and prob.
+```{r}
+binvar <- bin_variable(100, 0.7)
+typeof(binvar)
+class(binvar)
+```
+
+Binvars are printed as
+```{r}
+x <- bin_variable(100, 0.7)
+x
+```
+
+You can also obtain summary statistics of the binomial distirbution with the given number of trials and probability using the summary.binvar(binvar) function, which returns a summary.binvar object that is stored as a list with named elements trials, prob, mean, variance, mode, skewness, kurtosis (described in previous section).
+
+##Summary.binvar
+
+A summary binvar object stores the summary statistics of a binomial distribution with binvar's trials and prob of success in a list.
+
+The object is printed with its summary statistics displayed. For example
+```{r}
+y <- summary(x)
+y
+```
+
+
+
+
+

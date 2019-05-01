@@ -1,0 +1,53 @@
+---
+output:
+  github_document:
+    html_preview: false
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+
+## Overview
+
+`"BINOMIAL"` is a minimal [R](http://www.r-project.org/) package 
+that provides functions to simulate tossing a coin.
+
+* `coin()` creates a coin object (of class `"coin"`)
+* `toss()` tosses a coin object, producing a `"toss"` object.
+* `plot()` method for a `"toss"` object to plot frequencies of heads.
+* `summary()` method for a `"toss"` object.
+
+
+## Motivation
+
+This package helps the user see functions and methods of the binomial distribution.
+
+
+## Installation
+
+Install the development version from GitHub via the package `"devtools"`:
+
+```r
+# development version from GitHub:
+# install.packages("devtools") 
+# install "cointoss" (without vignettes)
+devtools::install_github("sp8268/binomial")
+# install "cointoss" (with vignettes)
+devtools::install_github("sp8268/binomial", build_vignettes = TRUE)
+```
+
+
+## Usage
+
+```{r}
+library(binomial)
+
+binvar <- bin_variable(10, 0.5)
+summary(binvar)
+```
