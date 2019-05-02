@@ -1,8 +1,8 @@
 
 
-setwd("~/Desktop/binomial")
-source("R/density_functions.R")
-source("R/binvar.R")
+
+source("../../R/density_functions.R")
+source("../../R/binvar.R")
 
 context("Tests for main functions")
 

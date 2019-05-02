@@ -1,6 +1,6 @@
 
-setwd("~/Desktop/binomial")
-source("R/checkers.R")
+
+source("../../R/checkers.R")
 
 context("Tests for checkers")
 

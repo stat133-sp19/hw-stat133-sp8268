@@ -1,6 +1,6 @@
 
-setwd("~/Desktop/binomial")
-source("R/auxiliary.R")
+
+source("../../R/auxiliary.R")
 
 context("Tests for summary measures")
 
